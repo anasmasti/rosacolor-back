@@ -5,7 +5,7 @@ const getProductBySlug = async (
   slug: string,
   Product: Model<IProduct, {}, {}, {}, any>
 ) => {
-  return await Product.find({ slug: slug }).populate("categoey", "name");
+  return await Product.findOne({ slug: slug }).populate("categoey", "name");
 };
 
 export default getProductBySlug;

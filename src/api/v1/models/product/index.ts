@@ -19,12 +19,10 @@ const ProductSchema = new Schema(
     img: {
       type: String,
     },
-    categories: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "Category",
-      },
-    ],
+    category: {
+      type: Schema.Types.ObjectId,
+      ref: "Category",
+    },
   },
   { timestamps: true }
 );

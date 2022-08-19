@@ -6,5 +6,5 @@ export default interface IProduct {
   description: string;
   slug: string;
   img: string,
-  categories : ICategory[]
+  category : ICategory
 }
