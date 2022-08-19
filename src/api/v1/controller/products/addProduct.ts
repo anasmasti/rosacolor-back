@@ -3,18 +3,25 @@ import postProduct from '../../services/product/postProduct';
 import { Request, Response } from 'express';
 import IProduct from '../../interfaces/Product';
 import { Document } from "mongoose";
+import getCategoryById from "../../services/category/getCategoryById";
 
-const addProduct = (req: Request, res: Response) => {
+const addProduct = async (req: Request, res: Response) => {
   try {
+    const category = await getCategoryById(req.body.category);
+
+    if (!category) {
+      res.status(404).send({ message: "Category not found !" });
+    }
+
     const product = new Product({
       title: req.body.title,
       description: req.body.description,
       slug: req.body.slug,
       img: req.body.img,
-      categories: req.body.categories
+      category: req.body.category
     });
 
-    postProduct(product)
+    await postProduct(product)
       .then((data: Document<unknown, any, IProduct>) => {
         res.json(data);
       })

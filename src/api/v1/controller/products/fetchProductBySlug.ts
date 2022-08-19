@@ -2,9 +2,9 @@ import Product from "../../models/product/index";
 import getProductBySlug from "../../services/product/getProductBySlug";
 import { Request, Response } from "express";
 
-const feshProductBySlug = (req: Request, res: Response) => {
+const feshProductBySlug = async (req: Request, res: Response) => {
   try {
-    getProductBySlug(req.params.slug, Product)
+    await getProductBySlug(req.params.slug, Product)
       .then((data) => {
         res.json(data);
       })
