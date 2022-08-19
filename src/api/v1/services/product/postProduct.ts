@@ -1,4 +1,7 @@
-const postProduct = async (Product: any) => {
+import { Document } from "mongoose";
+import IProduct from "../../interfaces/Product";
+
+const postProduct = async (Product: Document<unknown, any, IProduct>) => {
   return await Product.save();
 };
 
