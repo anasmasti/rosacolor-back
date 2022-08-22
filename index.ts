@@ -46,6 +46,7 @@ mongoDbConnection;
 // Routes configuration
 handleRoutes(app, productRoute, homeRoute, categoryRoute);
 
+// Run the server
 server.listen(PORT, HOST, () => {
   console.log(
     `Server runnig at : http://localhost:${PORT} or on http://${HOST}:${PORT} `
