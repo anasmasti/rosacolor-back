@@ -1,5 +1,6 @@
 import dotenv from "dotenv";
 import http from "http";
+import cors from "cors";
 import express from "express";
 import mongoDbConnection from "./src/config/db/mongodb.config";
 import productRoute from "./src/api/v1/router/product.routes";
@@ -13,6 +14,23 @@ const server = http.createServer(app);
 
 // .env config
 dotenv.config();
+
+// Cross-Origin Resource Sharing setup
+app.use(
+  cors({
+    origin: "*",
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: [
+      "Content-Type",
+      "X-Requested-With",
+      "Accept",
+      "Origin",
+      "Authorization",
+      "Api-Key-Access",
+    ],
+  })
+);
 
 // Get run vars from .env file
 const PORT = +process.env.PORT! || 5555;
