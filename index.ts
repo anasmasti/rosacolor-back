@@ -14,8 +14,9 @@ const server = http.createServer(app);
 // .env config
 dotenv.config();
 
-// Get port from .env
-const port = process.env.PORT;
+// Get run vars from .env file
+const PORT = +process.env.PORT! || 5555;
+const HOST = process.env.HOST ? process.env.HOST : undefined;
 
 // Body parse setup
 app.use(express.urlencoded({ extended: true }));
@@ -27,6 +28,8 @@ mongoDbConnection;
 // Routes configuration
 handleRoutes(app, productRoute, homeRoute, categoryRoute);
 
-server.listen(port, () => {
-  console.log(`Server runnig at : http://localhost:${port}`);
+server.listen(PORT, HOST, () => {
+  console.log(
+    `Server runnig at : http://localhost:${PORT} or on http://${HOST}:${PORT} `
+  );
 });
